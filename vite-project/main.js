@@ -13,7 +13,7 @@
         console.log(array)
     } catch (error) {
         console.log(error, "Uh Oh Sphagettios 💀");
-        document.querySelector("h1").textContent = "Eroor 🤓🤓"
+        document.querySelector("h1").textContent = "Error 🤓🤓"
     }
     }
     getData(URLs);
