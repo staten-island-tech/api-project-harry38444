@@ -1,5 +1,5 @@
 
-    const URLs = `https://digimon-api.vercel.app/api/digimon`;
+    const URLs = `https://db.ygoprodeck.com/api/v7/cardinfo.php`;
     async function getData(URLs) {
     try {
         const response = await fetch(URLs);
@@ -7,7 +7,7 @@
             throw new Error (response.statusText);
         }
         const data = await response.json();
-      data.forEach((data)=> console.log(data.name));
+      data.data.forEach((data)=> console.log(data.name));
         document.querySelector("h1").textContent = data;
         const array = data.name
         console.log(array)
