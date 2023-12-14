@@ -9,13 +9,13 @@ const DOMSelectors = {
             throw new Error (response.statusText);
         }
         const data = await response.json();
-      data.data.forEach((data)=> console.log(data.data.name));
-      data.data.forEach((data)=> console.log(data.data.card_images.image_url))
-      data.data.forEach((data)=> console.log(data.data.card_prices.tcgplayer_price))
-        document.querySelector("h1").textContent = data;
+     // data.data.forEach((data)=> console.log(data.data.name));
+     // data.data.forEach((data)=> console.log(data.data.card_images.image_url))
+     // data.data.forEach((data)=> console.log(data.data.card_prices.tcgplayer_price))
+     //   document.querySelector("h1").textContent = data;
       
         function insertCards(arr){
-            arr.data.forEach((data) => {
+            arr.forEach((data) => {
                 DOMSelectors.column.insertAdjacentHTML(
                     "beforeend",
                     `<div class="card">
@@ -27,7 +27,7 @@ const DOMSelectors = {
             });
         }
         
-        insertCards(data)
+        insertCards(data.data)
         console.log(array)
     } catch (error) {
         console.log(error, "Uh Oh Sphagettios 💀");
