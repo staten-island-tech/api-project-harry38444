@@ -13,7 +13,7 @@ border:2.5px solid #000;
   height: 110%;
   flex-wrap:wrap;
   justify-content: space-around;
-  margin: 10rem auto;
+  margin: 10rem auto;                                                           
 }
 .card {
   height: 40vh;
