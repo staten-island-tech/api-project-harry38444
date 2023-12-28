@@ -1,6 +1,11 @@
-const DOMSelectors = {
-    column: document.querySelector(".column"),
-}
+window.addEventListener('DOMContentLoaded', (event) => {
+    let currentPage = 1;
+
+    const DOMSelectors = {
+        column: document.querySelector(".column"),
+        nextButton: document.querySelector(".next-button"),
+    }
+
 function insertCards(arr){
     arr.forEach((data) => {
         DOMSelectors.column.insertAdjacentHTML(
@@ -15,18 +20,17 @@ function insertCards(arr){
 }
 
 
-
     const URL = `https://api.disneyapi.dev/character`;
 
-async function getData(URL) {
+async function getData(page) {
+    const URL = `https://api.disneyapi.dev/character?page=${page}`;
+
 try {
-    // requesting a response REST API's
+
     const response = await fetch(URL);
     if(response.status !=200) {
         throw new Error (response.statusText);
     }
-    
-
     const data = await response.json();
     insertCards(data.data)
 
@@ -37,4 +41,10 @@ try {
     document.querySelector("h1").textContent = "aVDnghj"
 }
 }
-    getData(URL);
+DOMSelectors.nextButton.addEventListener('click', () => {
+    currentPage++;
+    getData(currentPage);
+});
+
+getData(currentPage);
+});
