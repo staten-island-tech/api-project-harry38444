@@ -5,7 +5,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         column: document.querySelector(".column"),
         nextButton: document.querySelector(".next-button"),
     }
-
+    function clearfields(){
+        DOMSelectors.column.innerHTML="";
+    }
 function insertCards(arr){
     arr.forEach((data) => {
         DOMSelectors.column.insertAdjacentHTML(
@@ -43,6 +45,7 @@ try {
 }
 DOMSelectors.nextButton.addEventListener('click', () => {
     currentPage++;
+    clearfields();
     getData(currentPage);
 });
 
