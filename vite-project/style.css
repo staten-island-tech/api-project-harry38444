@@ -30,9 +30,10 @@ border:2.5px solid #000;
       font-size: large;
   }
 
-.nextButton {
+.next-Button, .previous-Button {
   padding: 10px 20px;
   margin: 20px 0;
   font-size: 20px;
   text-align: center;
   }
+
