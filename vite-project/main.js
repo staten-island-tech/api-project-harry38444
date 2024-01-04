@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     let currentPage = 1;
-
     const DOMSelectors = {
         column: document.querySelector(".column"),
         nextButton: document.querySelector(".next-button"),
@@ -16,7 +15,6 @@ function insertCards(arr){
             `<div class="card">
                 <h3 class = "name">${data.name}</h3>
                 <img src="${data.imageUrl}" class="img">
- 
             </div>`
         )
     });
