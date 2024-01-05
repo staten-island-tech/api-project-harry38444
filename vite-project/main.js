@@ -3,7 +3,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const DOMSelectors = {
         column: document.querySelector(".column"),
         nextButton: document.querySelector(".next-button"),
-        previousButton: document.querySelector(".previous-button")
+        previousButton: document.querySelector(".previous-button"),
+        search: document.querySelector('#search'),
+        input: document.querySelector('#input'),
     }
     function clearfields(){
         DOMSelectors.column.innerHTML="";
@@ -14,7 +16,7 @@ function insertCards(arr){
             "beforeend",
             `<div class="card">
                 <h3 class = "name">${data.name}</h3>
-                <img src="${data.imageUrl}" class="img">
+                <img src="${data.imageUrl}" class="img" alt="${data.name} Picture">
             </div>`
         )
     });
@@ -47,4 +49,28 @@ DOMSelectors.previousButton.addEventListener('click', () => {
     getData(currentPage);
 });
 getData(currentPage);
+
+async function search(URL){
+DOMSelectors.search.addEventListener('click', async function(event) {
+event.preventDefault();
+let URL = `https://api.disneyapi.dev/character`;
+try {
+const response = await fetch(URL);
+const result = await response.json();
+const data = result.data; 
+console.log(data)
+let input = DOMSelectors.input.value;
+let arr = data.filter((data) => data.name.toLowerCase().includes(input));
+clearfields();
+if (arr.length > 0) {
+    insertCards(arr);
+} else {
+    document.querySelector("h1").textContent = "No results 🤓🤓🤓";
+}
+    } catch (error) {
+        console.log(error);
+    }
+});
+}
+search(URL);
 });
