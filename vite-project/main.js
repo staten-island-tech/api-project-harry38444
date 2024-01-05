@@ -34,8 +34,8 @@ try {
     console.log(data)
     document.querySelector("h1").textContent = data.content;
 } catch (error) {
-    console.log(error, "Error. No page found, please wait a bit before trying again. If you tried to click previous page, there might have been no page before it. Please note that there are not an infinite amount of pages.");
-    document.querySelector("h1").textContent = "Error. No page found, please wait a bit before trying again. If you tried to click previous page, there might have been no page before it. Please note that there are not an infinite amount of pages."
+    console.log(error, "No page found, please wait a bit before trying again. If you tried to click previous page, there might have been no page before it. Reload the page. Please note that there are not an infinite amount of pages.");
+    document.querySelector("h1").textContent = "No page found, please wait a bit before trying again. If you tried to click previous page, there might have been no page before it. Reload the page. Please note that there are not an infinite amount of pages."
 }
 }
 DOMSelectors.nextButton.addEventListener('click', () => {
@@ -50,10 +50,11 @@ DOMSelectors.previousButton.addEventListener('click', () => {
 });
 getData(currentPage);
 
-async function search(URL){
+async function search(page){
+const URL = `https://api.disneyapi.dev/character?page=${page}`;
 DOMSelectors.search.addEventListener('click', async function(event) {
 event.preventDefault();
-let URL = `https://api.disneyapi.dev/character`;
+
 try {
 const response = await fetch(URL);
 const result = await response.json();
