@@ -30,6 +30,16 @@ try {
         throw new Error (response.statusText);
     }
     const data = await response.json();
+    if (data.data.length === 0) {
+        DOMSelectors.nextButton.disabled = true;
+    } else {
+        DOMSelectors.nextButton.disabled = false;
+    }
+    if (currentPage === 1) {
+        DOMSelectors.previousButton.disabled = true;
+    } else {
+        DOMSelectors.previousButton.disabled = false;
+    }
     insertCards(data.data)
     console.log(data)
     document.querySelector("h1").textContent = data.content;
@@ -50,13 +60,13 @@ DOMSelectors.previousButton.addEventListener('click', () => {
 });
 getData(currentPage);
 
-async function search(page){
-const URL = `https://api.disneyapi.dev/character?page=${page}`;
+async function search(){
+
 DOMSelectors.search.addEventListener('click', async function(event) {
 event.preventDefault();
-
+const URL = `https://api.disneyapi.dev/character?page=${currentPage}`;
 try {
-const response = await fetch(URL);
+    const response = await fetch(URL);
 const result = await response.json();
 const data = result.data; 
 console.log(data)
@@ -65,6 +75,7 @@ let arr = data.filter((data) => data.name.toLowerCase().includes(input));
 clearfields();
 if (arr.length > 0) {
     insertCards(arr);
+    document.querySelector("h1").textContent = ""
 } else {
     document.querySelector("h1").textContent = "No results 🤓🤓🤓";
 }
@@ -73,5 +84,5 @@ if (arr.length > 0) {
     }
 });
 }
-search(URL);
+search(currentPage);
 });
