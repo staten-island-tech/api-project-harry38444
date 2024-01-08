@@ -32,6 +32,7 @@ try {
     const data = await response.json();
     if (data.data.length === 0) {
         DOMSelectors.nextButton.disabled = true;
+        
     } else {
         DOMSelectors.nextButton.disabled = false;
     }
@@ -44,8 +45,8 @@ try {
     console.log(data)
     document.querySelector("h1").textContent = data.content;
 } catch (error) {
-    console.log(error, "No page found, please wait a bit before trying again. If you tried to click previous page, there might have been no page before it. Reload the page. Please note that there are not an infinite amount of pages.");
-    document.querySelector("h1").textContent = "No page found, please wait a bit before trying again. If you tried to click previous page, there might have been no page before it. Reload the page. Please note that there are not an infinite amount of pages."
+    console.log(error, "Server might be down. Check https://status.disneyapi.dev/ for more info.");
+    document.querySelector("h1").textContent = "Server might be down. Check https://status.disneyapi.dev/ for more info."
 }
 }
 DOMSelectors.nextButton.addEventListener('click', () => {
