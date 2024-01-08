@@ -16,7 +16,7 @@ function insertCards(arr){
             "beforeend",
             `<div class="card">
                 <h3 class = "name">${data.name}</h3>
-                <img src="${data.imageUrl}" class="img" alt="${data.name} Picture">
+                <img src="${data.imageUrl}" class="img" alt="Image of ${data.name}">
             </div>`
         )
     });

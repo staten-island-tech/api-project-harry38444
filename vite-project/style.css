@@ -52,3 +52,11 @@ body, #input {
 .card:hover {
   transform: scale(1.05);
 }
+
+.center {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 5rem auto;
+  gap: 5px;
+}
