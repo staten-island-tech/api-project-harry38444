@@ -21,10 +21,19 @@ function insertCards(arr){
     });
 } 
 let currentPage = 1;
-
+function error(){
+    DOMSelectors.column.insertAdjacentHTML(
+        "afterend",
+        `<h1>Server might be down. Check https://status.disneyapi.dev/ for more info.</h1>`)
+}
+function error2(){
+    DOMSelectors.column.insertAdjacentHTML(
+        "afterend",
+        `<h1>No results 🤓🤓🤓</h1>`)
+}
 async function getData(page) {
     const URL = `https://api.disneyapi.dev/character?page=${page}`;
-try {
+    
     const response = await fetch(URL);
     if(response.status !=200) {
         throw new Error (response.statusText);
@@ -41,14 +50,15 @@ try {
     } else {
         DOMSelectors.previousButton.disabled = false;
     }
+
     insertCards(data.data)
     console.log(data)
     document.querySelector("h1").textContent = data.content;
-} catch (error) {
-    console.log(error, "Server might be down. Check https://status.disneyapi.dev/ for more info.");
-    document.querySelector("h1").textContent = "Server might be down. Check https://status.disneyapi.dev/ for more info."
+        if (arr.length = 0) {
+        error2();
+    }
 }
-}
+
 DOMSelectors.nextButton.addEventListener('click', () => {
     currentPage++;
     clearfields();
@@ -66,7 +76,7 @@ async function search(){
 DOMSelectors.search.addEventListener('click', async function(event) {
 event.preventDefault();
 const URL = `https://api.disneyapi.dev/character?page=${currentPage}`;
-try {
+
     const response = await fetch(URL);
 const result = await response.json();
 const data = result.data; 
@@ -76,14 +86,9 @@ let arr = data.filter((data) => data.name.toLowerCase().includes(input));
 clearfields();
 if (arr.length > 0) {
     insertCards(arr);
-    document.querySelector("h1").textContent = ""
 } else {
-    document.querySelector("h1").textContent = "No results 🤓🤓🤓";
-    console.log("Error: No results 🤓🤓🤓")
+    error2();
 }
-    } catch (error) {
-        console.log(error);
-    }
 });
 }
 search(currentPage);
