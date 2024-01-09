@@ -13,7 +13,7 @@ border:2.5px solid #000;
   height: 100%;
   flex-wrap:wrap;
   justify-content: space-around;
-  margin: 10rem auto;                                                           
+  margin: 0.5rem auto;                                                           
 }
 .card {
 height: 50vh;
@@ -33,7 +33,7 @@ transition: 1s;
 
 .next-button, .previous-button, #search, #input {
   padding: 10px 20px;
-  margin: 20px 0;
+  margin: 5px 0;
   font-size: 20px;
   text-align: center;
   border-radius: 5px;
@@ -57,6 +57,6 @@ body, #input {
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 5rem auto;
+  margin: 1rem auto;
   gap: 5px;
 }

@@ -1,5 +1,4 @@
-window.addEventListener('DOMContentLoaded', (event) => {
-    let currentPage = 1;
+   
     const DOMSelectors = {
         column: document.querySelector(".column"),
         nextButton: document.querySelector(".next-button"),
@@ -20,8 +19,9 @@ function insertCards(arr){
             </div>`
         )
     });
-}
-const URL = `https://api.disneyapi.dev/character`
+} 
+let currentPage = 1;
+
 async function getData(page) {
     const URL = `https://api.disneyapi.dev/character?page=${page}`;
 try {
@@ -79,6 +79,7 @@ if (arr.length > 0) {
     document.querySelector("h1").textContent = ""
 } else {
     document.querySelector("h1").textContent = "No results 🤓🤓🤓";
+    console.log("Error: No results 🤓🤓🤓")
 }
     } catch (error) {
         console.log(error);
@@ -86,4 +87,3 @@ if (arr.length > 0) {
 });
 }
 search(currentPage);
-});
